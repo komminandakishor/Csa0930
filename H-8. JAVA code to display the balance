@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Account {
+    double balance;
+
+    Account() {
+        balance = 0;
+    }
+
+    Account(double initialBalance) {
+        balance = initialBalance;
+    }
+
+    double add(double sum) {
+        balance += sum;
+        return sum;
+    }
+
+    double withdraw(double amount) {
+        if (amount > balance) {
+            balance -= 5; // Penalty for insufficient balance
+            return -5;
+        } else {
+            balance -= amount;
+            return balance;
+        }
+    }
+
+    double inquire() {
+        return balance;
+    }
+
+    double interest(double rate) {
+        return rate * balance;
+    }
+}
+
+public class Day4BankWorkingClass {
+    public static void main(String args[]) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Enter account holder name: ");
+            String accountHolderName = scanner.next();
+
+            System.out.print("Enter account type: ");
+            String accountType = scanner.next();
+
+            System.out.print("Enter the initial balance: ");
+            double initialBalance = scanner.nextDouble();
+            Account account = new Account(initialBalance);
+
+            System.out.print("Enter the amount to withdraw: ");
+            double withdrawAmount = scanner.nextDouble();
+
+            double withdrawResult = account.withdraw(withdrawAmount);
+            System.out.println("Account holder name: " + accountHolderName);
+            System.out.println("Account type: " + accountType);
+
+            if (withdrawResult == -5) {
+                System.out.println("Penalty of Rs. 5 charged due to insufficient balance");
+                System.out.println("Current balance: " + account.inquire());
+            } else {
+                System.out.println("Balance after withdrawal: " + withdrawResult);
+            }
+
+            System.out.println("Interest for current balance: " + account.interest(0.006));
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
