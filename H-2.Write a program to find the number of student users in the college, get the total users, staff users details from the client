@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Staff {
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            
+            System.out.print("Enter total number of users: ");
+            int totalUsers = sc.nextInt();
+            
+            System.out.print("Enter number of staff users: ");
+            int staffUsers = sc.nextInt();
+            
+            if (totalUsers < 0 || staffUsers < 0 || staffUsers > totalUsers) {
+                System.out.println("Please enter valid numbers of users.");
+            } else {
+                int staffToStudentRatio = 3;
+                int studentUsers = totalUsers - staffUsers / staffToStudentRatio;
+                System.out.println("Student users: " + studentUsers);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter valid numbers.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+        }
+    }
+}
