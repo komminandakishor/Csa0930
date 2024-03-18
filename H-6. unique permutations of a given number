@@ -1,0 +1,35 @@
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Day2Permutation {
+    public static Set<String> getPermutation(String str) {
+        Set<String> permutations = new LinkedHashSet<>();
+        if (str == null || str.isEmpty()) {
+            permutations.add("");
+            return permutations;
+        }
+        char first = str.charAt(0);
+        String remaining = str.substring(1);
+        Set<String> words = getPermutation(remaining);
+        for (String word : words) {
+            for (int i = 0; i <= word.length(); i++) {
+                permutations.add(word.substring(0, i) + first + word.substring(i));
+            }
+        }
+        return permutations;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String data = input.nextLine();
+        
+        if (data == null || data.isEmpty()) {
+            System.out.println("Invalid input. Please enter a non-empty string.");
+            return;
+        }
+        
+        System.out.println("Permutations of \"" + data + "\": \n" + getPermutation(data));
+    }
+}
