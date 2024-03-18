@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class CommonElementsInTwoArrays {
+    public static void main(String args[]) {
+        try {
+            Scanner input = new Scanner(System.in);
+
+            System.out.print("Enter the size of array 1: ");
+            int a1 = input.nextInt();
+            int[] a = new int[a1];
+            System.out.println("Enter the elements into the array: ");
+            for (int i = 0; i < a1; i++) {
+                a[i] = input.nextInt();
+            }
+
+            System.out.print("Enter the size of array 2: ");
+            int b1 = input.nextInt();
+            int[] b = new int[b1];
+            System.out.println("Enter the elements into the array: ");
+            for (int i = 0; i < b1; i++) {
+                b[i] = input.nextInt();
+            }
+
+            findAndPrintCommonElements(a, b);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void findAndPrintCommonElements(int[] arr1, int[] arr2) {
+        boolean found = false;
+        for (int i : arr1) {
+            for (int j : arr2) {
+                if (i == j) {
+                    found = true;
+                    System.out.print("Common element: " + i + " ");
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("No common elements found.");
+        }
+    }
+}
