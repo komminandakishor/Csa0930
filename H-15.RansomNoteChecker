@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class RansomNoteChecker {
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the ransom note: ");
+            String ransomNote = scanner.next();
+            System.out.print("Enter the magazine text: ");
+            String magazineText = scanner.next();
+            boolean canFormRansom = checkRansom(ransomNote, magazineText);
+            System.out.println("Ransom note can be formed: " + canFormRansom);
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static boolean checkRansom(String ransomNote, String magazineText) {
+        int[] count = new int[300]; // Assuming ASCII characters
+        char[] magazineChars = magazineText.toCharArray();
+        for (char c : magazineChars) {
+            count[c]++;
+        }
+        char[] ransomChars = ransomNote.toCharArray();
+        for (char c : ransomChars) {
+            if (count[c] == 0) {
+                return false;
+            }
+            count[c]--;
+        }
+        return true;
+    }
+}
