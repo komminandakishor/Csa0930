@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args) {
+        try {
+            float m1, m2, m3, m4, m5, m6;
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter marks in Python:");
+            m1 = sc.nextFloat();
+            System.out.println("Enter marks in C programming:");
+            m2 = sc.nextFloat();
+            System.out.println("Enter marks in Mathematics:");
+            m3 = sc.nextFloat();
+            System.out.println("Enter marks in Physics:");
+            m5 = sc.nextFloat();
+            System.out.println("Enter marks in Chemistry:");
+            m6 = sc.nextFloat();
+            System.out.println("Enter marks in Professional Ethics:");
+            m4 = sc.nextFloat();
+
+            if (m1 > 100 || m2 > 100 || m3 > 100 || m4 > 100 || m5 > 100 || m6 > 100 || m1 < 0 || m2 < 0 || m3 < 0 || m4 < 0 || m5 < 0 || m6 < 0) {
+                throw new IllegalArgumentException("Invalid input: Marks should be between 0 and 100.");
+            }
+
+            float total = m1 + m2 + m3 + m4 + m5 + m6;
+            float agg = total / 6;
+            System.out.println("Total marks: " + total);
+            System.out.println("Aggregate: " + agg);
+
+            if (agg > 75) {
+                System.out.println("DISTINCTION");
+            } else if (agg >= 60 && agg < 75) {
+                System.out.println("FIRST DIVISION");
+            } else if (agg >= 50 && agg < 60) {
+                System.out.println("SECOND DIVISION");
+            } else if (agg >= 40 && agg < 50) {
+                System.out.println("THIRD DIVISION");
+            } else {
+                System.out.println("FAIL");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
