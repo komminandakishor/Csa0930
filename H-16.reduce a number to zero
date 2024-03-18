@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class DivisibleBy2AndSubtractCounter {
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the number: ");
+            int n = sc.nextInt();
+            int steps = countSteps(n);
+            System.out.println("The number of steps: " + steps);
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    public static int countSteps(int n) {
+        int steps = 0;
+        while (n > 0) {
+            if (n % 2 == 0) {
+                n = n / 2;
+            } else {
+                n--;
+            }
+            steps++;
+        }
+        return steps;
+    }
+}
