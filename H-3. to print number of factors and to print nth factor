@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class NthFactor {
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            
+            System.out.print("Enter a positive number: ");
+            int num = sc.nextInt();
+            if (num <= 0) {
+                System.out.println("Please enter a positive number.");
+                return;
+            }
+
+            System.out.print("Enter N: ");
+            int n = sc.nextInt();
+            if (n <= 0) {
+                System.out.println("Please enter a positive value for N.");
+                return;
+            }
+
+            int count = 0;
+            for (int i = 1; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    count++;
+                    if (count == n) {
+                        System.out.println(n + "th Factor is " + i);
+                        return;
+                    }
+                    if (i != num / i) {
+                        count++;
+                        if (count == n) {
+                            System.out.println(n + "th Factor is " + num / i);
+                            return;
+                        }
+                    }
+                }
+            }
+            System.out.println("The " + n + "th factor is not found within " + num + ".");
+            System.out.println("Total factors of " + num + ": " + count);
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+        }
+    }
+}
