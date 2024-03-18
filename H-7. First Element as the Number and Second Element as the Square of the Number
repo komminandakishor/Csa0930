@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Day3ArraySquareRoot {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the lower limit: ");
+        int lowerLimit = sc.nextInt();
+        System.out.print("Enter the upper limit: ");
+        int upperLimit = sc.nextInt();
+
+        if (lowerLimit > upperLimit) {
+            System.out.println("Enter valid limits.");
+        } else {
+            System.out.print("[");
+            StringBuilder result = new StringBuilder();
+            if (lowerLimit < upperLimit) {
+                for (int j = lowerLimit; j <= upperLimit; j++) {
+                    result.append("(").append(j).append(",").append(j * j).append(")");
+                    if (j < upperLimit) {
+                        result.append(",");
+                    }
+                }
+            } else if (lowerLimit > upperLimit) {
+                for (int i = lowerLimit; i >= upperLimit; i--) {
+                    result.append("(").append(i).append(",").append(i * i).append(")");
+                    if (i > upperLimit) {
+                        result.append(",");
+                    }
+                }
+            }
+            result.append("]");
+            System.out.println(result);
+            
+            if (lowerLimit == upperLimit) {
+                System.out.println("Both the limits are the same.");
+            }
+        }
+    }
+}
